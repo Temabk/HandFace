@@ -112,12 +112,12 @@ def detect_hands_from_webcam():
     global counter, game_over, shapes, small_window_shape, start_time
     while True:
 
-        elapsed_time = time.time() - start_time  # Время с начала
-        remaining_time = countdown_time - elapsed_time  # Оставшееся время
+        elapsed_time = time.time() - start_time  
+        remaining_time = countdown_time - elapsed_time  
 
         if remaining_time < 0:
             remaining_time = 0
-            game_over = True  # Устанавливаем флаг завершения игры
+            game_over = True  
 
         if cv2.waitKey(1) & 0xFF == 27:
             break
@@ -145,16 +145,16 @@ def detect_hands_from_webcam():
 
                 for shape in shapes:
                     if is_finger_over_shape(index_x, index_y, shape):
-                        # Проверяем совпадение цвета
-                        if shape['color'] == small_window_shape['color']:
-                            counter += 1  # Увеличиваем счетчик
-                        else:
-                            counter -= 1  # Уменьшаем счетчик
                         
-                        # Генерация новых фигур
+                        if shape['color'] == small_window_shape['color']:
+                            counter += 1  
+                        else:
+                            counter -= 1  
+                        
+                        
                         shapes = generate_random_shapes(num_shapes, image.shape)
                         small_window_shape = choice(shapes)
-                        break  # Выходим из цикла обработки фигур
+                        break  
 
         for shape in shapes:
             if shape['type'] == 'circle':
@@ -180,14 +180,14 @@ def detect_hands_from_webcam():
                    (window_x1 + 120, window_y1 + 130)]
             cv2.fillPoly(image, [np.array(pts)], small_window_shape['color'])
 
-        # Отображение таймера
+        
         timer_text = f"Time left: {int(remaining_time)} seconds"
         cv2.putText(image, timer_text, (220, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         counter_text = f"Your Score: {counter}"
         cv2.putText(image, counter_text, (220, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
-        # Проверяем, завершена ли игра
+        
         if game_over:
             cv2.putText(image, "Time is Over!", (700, 650), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 3)
 
@@ -327,7 +327,7 @@ def main():
     root = tk.Tk()
     root.withdraw()
 
-    default_image_path = "image_test.jpg"  # Имя файла изображения в папке с кодом
+    default_image_path = "image_test.jpg"  
     if not os.path.exists(default_image_path):
         print(f"Файл {default_image_path} не найден в папке с кодом.")
         messagebox.showerror("Ошибка", f"Файл {default_image_path} не найден в папке с кодом.")
