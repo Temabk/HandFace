@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 from unittest.mock import patch
-from main import process_frame, main, detect_faces_from_image, detect_faces_from_webcam
+from project import process_frame, main, detect_faces_from_image, detect_faces_from_webcam
 from unittest import mock
 import builtins
 from tkinter import simpledialog
