@@ -1,5 +1,13 @@
 from project import is_inside_small_window, generate_random_shapes, is_finger_over_shape, window_x1, window_x2, window_y1, window_y2
 import pytest
+import numpy as np
+from unittest.mock import patch
+from project import process_frame, main, detect_faces_from_image, detect_faces_from_webcam
+from unittest import mock
+import builtins
+from tkinter import simpledialog
+import os
+import cv2
 
 def test_is_inside_small_window_positive():
 
@@ -48,15 +56,7 @@ def test_generate_random_shapes_negative():
     num_shapes = '20'
     image_shape = (100, 100, 5)
     with pytest.raises(TypeError):
-        generate_random_shapes(num_shapes, image_shape)import pytest
-import numpy as np
-from unittest.mock import patch
-from project import process_frame, main, detect_faces_from_image, detect_faces_from_webcam
-from unittest import mock
-import builtins
-from tkinter import simpledialog
-import os
-import cv2
+        generate_random_shapes(num_shapes, image_shape)
 
 
 def test_process_frame_positive():
@@ -105,13 +105,13 @@ def test_detect_faces_from_image_negative():
 
 
 def test_main_negative():
-    choice = '5'
+    choice = '6'
     with pytest.raises(ValueError):
         main()
 
 
 def test_main_positive():
-    with mock.patch.object(simpledialog, 'askstring', return_value='3'):
+    with mock.patch.object(simpledialog, 'askstring', return_value='4'):
         with mock.patch('tkinter.messagebox.showinfo') as mock_showinfo:
             main()
             mock_showinfo.assert_called_once_with("Выход", "Выход из программы.")
