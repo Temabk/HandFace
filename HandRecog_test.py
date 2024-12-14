@@ -1,4 +1,4 @@
-from main import is_inside_small_window, generate_random_shapes, is_finger_over_shape, window_x1, window_x2, window_y1, window_y2
+from project import is_inside_small_window, generate_random_shapes, is_finger_over_shape, window_x1, window_x2, window_y1, window_y2
 import pytest
 
 def test_is_inside_small_window_positive():
